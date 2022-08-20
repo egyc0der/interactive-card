@@ -23,7 +23,13 @@ const FormCmpnt = ({onFormSubmit}) => {
 	}
 	useEffect(() => {
 	  setFormData(initiaValues);
-		onFormSubmit(formData);
+		onFormSubmit({
+			cardholder: "JANE APPLESEED",
+			cardnumber: "0000 0000 0000 0000",
+			exp_m: "00",
+			exp_y: "00",
+			cvc: "12345",
+		});
 	}, [])
 	const validationSchema = yup.object().shape({
 		cardholder: yup.string().required("Card Holder is required!"),
@@ -73,13 +79,13 @@ const FormCmpnt = ({onFormSubmit}) => {
 									CARDHOLDER NAME
 								</label>
 								<Field
-									placeholder='JANE APPLESEED'
+									placeholder='eg. Jane Applessed'
 									name='cardholder'
 									type='text'
 									className={`outline-none border ${
 										errors.cardholder ? "border-red-700" : "border-black"
 									} 
-											w-[95%] mx-2 rounded-lg h-[13%] px-2 text-3xl mb-2`}
+											w-[95%] mx-2 rounded-lg h-[13%] px-2 text-md mb-2`}
 								/>
 								{errors.cardholder && touched.cardholder && (
 									<div className='text-red-700 text-left w-full mb-4'>
@@ -90,13 +96,13 @@ const FormCmpnt = ({onFormSubmit}) => {
 									CARD NUMBER
 								</label>
 								<Field
-									placeholder='0000 0000 0000 0000'
+									placeholder='eg. 0000 0000 0000 0000'
 									name='cardnumber'
 									type='text'
 									className={`outline-none border ${
 										errors.cardnumber ? "border-red-700" : "border-black"
 									}
-									 w-[95%] mx-2 rounded-lg h-[13%] px-2 text-3xl mb-2`}
+									 w-[95%] mx-2 rounded-lg h-[13%] px-2 text-md mb-2`}
 								/>
 								{errors.cardnumber && touched.cardnumber && (
 									<div className='text-red-700 text-left w-full mb-4'>
@@ -116,7 +122,7 @@ const FormCmpnt = ({onFormSubmit}) => {
 								</div>
 								<div className='flex items-center justify-start w-full h-[13%]'>
 									<Field
-										placeholder='00'
+										placeholder='MM'
 										name='exp_m'
 										className={`rounded-lg h-[100%]  w-[20%] outline-none 
 										border ${errors.exp_m ? "border-red-700" : "border-black"} 
@@ -124,7 +130,7 @@ const FormCmpnt = ({onFormSubmit}) => {
 									/>
 
 									<Field
-										placeholder='00'
+										placeholder='YY'
 										name='exp_y'
 										className={`rounded-lg h-[100%]  w-[20%] outline-none 
 										border ${errors.exp_y ? "border-red-700" : "border-black"} 
